@@ -9,7 +9,7 @@ variable "jenkins-host-vars" {
 resource "yandex_compute_instance" "jenkins-host" {
   name        = "jenkins-host"
   platform_id = "standard-v1"
-  zone        = var.availablity_zone
+  zone        = var.availability_zone
 
   resources {
     cores  = var.jenkins-host-vars.cores
@@ -22,7 +22,7 @@ resource "yandex_compute_instance" "jenkins-host" {
   }
 
   network_interface {
-    subnet_id = "${yandex_vpc_subnet.foo.id}"
+    subnet_id = "${yandex_vpc_subnet.cloud-pipeline-subnet.id}"
   }
 
   metadata = {

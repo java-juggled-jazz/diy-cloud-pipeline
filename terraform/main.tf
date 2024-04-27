@@ -15,6 +15,6 @@ resource "yandex_vpc_network" "cloud-pipeline-net" {}
 
 resource "yandex_vpc_subnet" "cloud-pipeline-subnet" {
   zone           = var.availablity_zone
-  network_id     = "${yandex_vpc_network.cloud-pipeline-net.id}"
+  network_id     = yandex_vpc_network.cloud-pipeline-net.id
   v4_cidr_blocks = ["10.1.0.0/24"]
 }

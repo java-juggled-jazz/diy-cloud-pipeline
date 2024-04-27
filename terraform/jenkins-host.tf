@@ -1,12 +1,20 @@
+variable "jenkins-host-vars" {
+  type = object({
+    cores = number
+    core_fraction = number
+    memory = number
+  })
+}
+
 resource "yandex_compute_instance" "jenkins-host" {
   name        = "jenkins-host"
   platform_id = "standard-v1"
   zone        = var.availablity_zone
 
   resources {
-    cores  = var.jenkins-host.cores
-    core_fraction = var.jenkins-host.cores
-    memory = var.jenkins-host.memory
+    cores  = var.jenkins-host-vars.cores
+    core_fraction = var.jenkins-host-vars.core_fraction
+    memory = var.jenkins-host-vars.memory
   }
 
   boot_disk {

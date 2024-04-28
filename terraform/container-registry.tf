@@ -1,5 +1,5 @@
 resource "yandex_container_registry" "registry" {
-  name = "Container Registry"
+  name = "container-registry"
   folder_id = var.folder-id
   labels = {
     project_label = "cloud-pipeline"

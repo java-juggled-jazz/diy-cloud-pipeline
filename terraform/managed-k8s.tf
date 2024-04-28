@@ -19,8 +19,7 @@ resource "yandex_kubernetes_cluster" "managed-k8s" {
   node_service_account_id = var.service-account-id
 
   labels = {
-    my_key       = "my_value"
-    my_other_key = "my_other_value"
+    project_label = var.project_label
   }
 
   release_channel = "RAPID"

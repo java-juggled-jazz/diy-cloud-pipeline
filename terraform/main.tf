@@ -1,3 +1,7 @@
+variable "availability_zone" {
+  type = string
+}
+
 terraform {
   required_providers {
     yandex = {
@@ -14,7 +18,7 @@ provider "yandex" {
 resource "yandex_vpc_network" "cloud-pipeline-net" {}
 
 resource "yandex_vpc_subnet" "cloud-pipeline-subnet" {
-  zone           = var.availablity_zone
+  zone           = var.availability_zone
   network_id     = yandex_vpc_network.cloud-pipeline-net.id
   v4_cidr_blocks = ["10.1.0.0/24"]
 }

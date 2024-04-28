@@ -11,6 +11,6 @@ resource "yandex_storage_bucket" "pipeline-bucket" {
     list = false
     config_read = false
   }
-  access_key = yandex_iam_service_account_static_access_key.sa-static-key.access_key
-  secret_key = yandex_iam_service_account_static_access_key.sa-static-key.secret_key
+  access_key = yandex_iam_service_account_static_access_key.bucket-sa-static-key.access_key
+  secret_key = yandex_iam_service_account_static_access_key.bucket-sa-static-key.secret_key
 }

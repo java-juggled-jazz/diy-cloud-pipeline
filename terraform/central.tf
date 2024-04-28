@@ -29,6 +29,10 @@ resource "yandex_compute_instance" "central-host" {
   metadata = {
     ssh-keys = ""
   }
+
+  labels = {
+    project_label = var.project_label
+  }
 }
 
 output "central-host-ip" {

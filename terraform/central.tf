@@ -22,7 +22,7 @@ resource "yandex_compute_instance" "central-host" {
   }
 
   network_interface {
-    subnet_id = "${yandex_vpc_subnet.cloud-pipeline-subnet.id}"
+    subnet_id = yandex_vpc_subnet.cloud-pipeline-subnet.id
     nat = true
   }
 

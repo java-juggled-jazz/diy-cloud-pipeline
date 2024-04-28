@@ -9,8 +9,6 @@ resource "yandex_kubernetes_cluster" "managed-k8s" {
       subnet_id = yandex_vpc_subnet.cloud-pipeline-subnet.id
     }
 
-    public_ip = false
-
     security_group_ids = [yandex_vpc_security_group.k8s-public-services.id]
   }
 

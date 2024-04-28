@@ -12,7 +12,7 @@ terraform {
 }
 
 provider "yandex" {
-  zone = var.availablity_zone
+  zone = var.availability_zone
 }
 
 resource "yandex_vpc_network" "cloud-pipeline-net" {}

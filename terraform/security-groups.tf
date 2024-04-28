@@ -21,6 +21,10 @@ resource "yandex_vpc_security_group" "vm-security-group" {
     description    = "Outgoing packets"
     v4_cidr_blocks = ["0.0.0.0/0"]
   }
+
+  labels = {
+    project_label = var.project_label
+  }
 }
 
 resource "yandex_vpc_security_group" "k8s-lb-security-group" {
@@ -38,5 +42,9 @@ resource "yandex_vpc_security_group" "k8s-lb-security-group" {
     protocol       = "ANY"
     description    = "Outgoing packets"
     v4_cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  labels = {
+    project_label = var.project_label
   }
 }

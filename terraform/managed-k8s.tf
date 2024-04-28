@@ -48,7 +48,7 @@ resource "yandex_vpc_security_group" "k8s-public-services" {
   ingress {
     protocol          = "ANY"
     description       = "The rule is allowing pod-pod and service-service interaction"
-    v4_cidr_blocks    = concat(yandex_vpc_subnet.mysubnet.v4_cidr_blocks)
+    v4_cidr_blocks    = concat(yandex_vpc_subnet.cloud-pipeline-subnet.v4_cidr_blocks)
     from_port         = 0
     to_port           = 65535
   }

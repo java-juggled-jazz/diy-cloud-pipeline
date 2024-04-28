@@ -15,8 +15,8 @@ resource "yandex_kubernetes_cluster" "managed-k8s" {
 //    security_group_ids = ["${yandex_vpc_security_group.security_group_name.id}"]
   }
 
-  service_account_id = var.service-account.id
-  node_service_account_id = var.node-service-account.id
+  service_account_id = var.service-account
+  node_service_account_id = var.node-service-account
 
   labels = {
     my_key       = "my_value"

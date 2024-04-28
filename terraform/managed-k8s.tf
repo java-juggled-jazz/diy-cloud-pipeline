@@ -1,11 +1,3 @@
-variable "service-account" {
-  type = string
-}
-
-variable "node-service-account" {
-  type = string
-}
-
 resource "yandex_kubernetes_cluster" "managed-k8s" {
   name        = "managed-k8s"
 

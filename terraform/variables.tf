@@ -30,3 +30,7 @@ variable "pipeline-bucket" {
 variable "service-account-id" {
   type = string
 }
+
+variable "project_label" {
+  type = string
+}

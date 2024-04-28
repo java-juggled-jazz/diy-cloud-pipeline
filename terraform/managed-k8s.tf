@@ -21,8 +21,6 @@ resource "yandex_kubernetes_cluster" "managed-k8s" {
   labels = {
     project_label = var.project_label
   }
-
-  release_channel = "STABLE"
 }
 
 resource "yandex_vpc_security_group" "k8s-public-services" {

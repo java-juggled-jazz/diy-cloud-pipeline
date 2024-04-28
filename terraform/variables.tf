@@ -1,3 +1,11 @@
+variable "cloud-id" {
+  type = string
+}
+
+variable "folder-id" {
+  type = string
+}
+
 variable "availability_zone" {
   type = string
 }

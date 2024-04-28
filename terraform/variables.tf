@@ -16,6 +16,7 @@ variable "central-host-vars" {
     core_fraction = number
     memory = number
     image_id = string
+    disk_size = number
   })
 }
 

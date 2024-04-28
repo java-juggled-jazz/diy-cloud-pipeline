@@ -30,3 +30,10 @@ variable "pipeline-bucket" {
 variable "service-account-id" {
   type = string
 }
+
+variable "sa-static-key" {
+  type = object({
+    access_key = string
+    secret_key = string
+  })
+}

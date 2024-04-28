@@ -6,7 +6,7 @@ resource "yandex_kubernetes_cluster" "managed-k8s" {
   master {
     version = "1.17"
     zonal {
-      zone = var.availability_zone
+      zone = var.availability-zone
       subnet_id = yandex_vpc_network.cloud-pipeline-net.id
     }
 

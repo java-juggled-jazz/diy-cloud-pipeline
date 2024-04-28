@@ -1,7 +1,3 @@
-variable "availability_zone" {
-  type = string
-}
-
 terraform {
   required_providers {
     yandex = {

@@ -6,7 +6,7 @@ variable "folder-id" {
   type = string
 }
 
-variable "availability_zone" {
+variable "availability-zone" {
   type = string
 }
 

@@ -22,5 +22,5 @@ resource "yandex_kubernetes_cluster" "managed-k8s" {
     project_label = var.project_label
   }
 
-  release_channel = "RAPID"
+  release_channel = "STABLE"
 }

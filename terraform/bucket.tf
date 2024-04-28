@@ -6,4 +6,6 @@ resource "yandex_storage_bucket" "pipeline-bucket" {
     list = false
     config_read = false
   }
+  access_key = var.sa-static-key.access_key
+  secret_key = var.sa-static-key.secret_key
 }

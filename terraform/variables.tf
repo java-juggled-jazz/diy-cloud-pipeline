@@ -27,10 +27,6 @@ variable "pipeline-bucket" {
   })
 }
 
-variable "service-account" {
-  type = string
-}
-
-variable "node-service-account" {
+variable "service-account-id" {
   type = string
 }

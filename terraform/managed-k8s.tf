@@ -4,7 +4,6 @@ resource "yandex_kubernetes_cluster" "managed-k8s" {
   network_id = yandex_vpc_network.cloud-pipeline-net.id
 
   master {
-    version = "1.17"
     zonal {
       zone = var.availability-zone
       subnet_id = yandex_vpc_subnet.cloud-pipeline-subnet.id
@@ -21,6 +20,8 @@ resource "yandex_kubernetes_cluster" "managed-k8s" {
   labels = {
     project_label = var.project_label
   }
+
+  release_channel = "STABLE"
 }
 
 resource "yandex_vpc_security_group" "k8s-public-services" {

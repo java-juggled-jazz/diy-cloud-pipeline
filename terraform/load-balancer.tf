@@ -8,4 +8,8 @@ resource "yandex_lb_network_load_balancer" "load-balancer" {
       ip_version = "ipv4"
     }
   }
+
+  labels = {
+    project_label = var.project_label
+  }
 }

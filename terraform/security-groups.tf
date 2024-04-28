@@ -1,5 +1,5 @@
 resource "yandex_vpc_security_group" "vm-security-group" {
-  name        = "VM Security Group"
+  name        = "vm-security-group"
   network_id  = yandex_vpc_network.cloud-pipeline-net.id
 
   ingress {
@@ -22,7 +22,7 @@ resource "yandex_vpc_security_group" "vm-security-group" {
 }
 
 resource "yandex_vpc_security_group" "k8s-lb-security-group" {
-  name        = "Kubernetes Load Balancer Security Group"
+  name        = "kubernetes-load-balancer-security-group"
   network_id  = yandex_vpc_network.cloud-pipeline-net.id
 
   ingress {

@@ -12,7 +12,7 @@ resource "yandex_kubernetes_cluster" "managed-k8s" {
 
     public_ip = false
 
-    security_group_ids = ["${yandex_vpc_security_group.security_group_name.id}"]
+//    security_group_ids = ["${yandex_vpc_security_group.security_group_name.id}"]
   }
 
   service_account_id = var.service-account.id

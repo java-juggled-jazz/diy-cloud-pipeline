@@ -1,5 +1,4 @@
 {
-  "id": "string",
   "folderId": "string",
   "name": "string",
   "description": "string",
@@ -19,14 +18,11 @@
     "awsV1HttpToken": "DISABLED"
   },
   "bootDisk": {
-    "mode": "string",
-    "deviceName": "string",
     "autoDelete": true,
     "diskId": "string"
   },
   "networkInterfaces": [
     {
-      "index": "string",
       "subnetId": "string",
       "primaryV4Address": {
         "address": "string",
@@ -40,13 +36,6 @@
       ]
     }
   ],
-  "schedulingPolicy": {
-    "preemptible": true
-  },
   "serviceAccountId": "string",
-  "networkSettings": {
-    "type": "string"
-  },
-  "maintenancePolicy": "string",
   "maintenanceGracePeriod": "string"
 }

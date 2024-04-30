@@ -10,9 +10,7 @@ terraform init
 terraform apply -auto-approve
 cd ..
 
-# HERE
-# IT CREATES
-# TEMPORARY BUILDER VM
+yc compute instance
 
 # ANSIBLE
 # IS

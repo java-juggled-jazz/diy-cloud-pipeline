@@ -1,7 +1,6 @@
 {
   "id": "string",
   "folderId": "string",
-  "createdAt": "string",
   "name": "string",
   "description": "string",
   "labels": "object",
@@ -12,7 +11,6 @@
     "cores": "string",
     "coreFraction": "string"
   },
-  "status": "string",
   "metadata": "object",
   "metadataOptions": {
     "gceHttpEndpoint": "DISABLED",
@@ -29,7 +27,6 @@
   "networkInterfaces": [
     {
       "index": "string",
-      "macAddress": "string",
       "subnetId": "string",
       "primaryV4Address": {
         "address": "string",

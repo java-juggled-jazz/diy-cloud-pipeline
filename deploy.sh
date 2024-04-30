@@ -1,8 +1,9 @@
 !#/bin/sh
 
-# HERE
-# IT GENERATES
-# SSH KEYS FOR VMS
+source .secrets
+
+mkdir -p ~/.ssh/diy-cloud-pipeline-keys
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/diy-cloud-pipeline-keys/id_rsa -N "$PASSPHRASE"
 
 cd terraform
 terraform init

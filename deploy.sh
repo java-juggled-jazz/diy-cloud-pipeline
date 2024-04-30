@@ -10,13 +10,25 @@ terraform init
 terraform apply -auto-approve
 cd ..
 
-yc compute instance
+yc compute instance create \
+  --name builder \
+  --zone $AVAILABILITY_ZONE \
+  --create-boot-disk image-id=$BUILDER_IMAGE_ID,size=30,type=network-ssd \
+  --image-folder-id standard-images \
+  --memory $MEMORY --cores $CORES --core-fraction $CORE_FRACTION \
+  --network-interface subnet-id=$SUBNET_ID,nat-ip-version=ipv4 \
+  --async 
 
 # ANSIBLE
 # IS
 # HERE
 
-# HERE
-# IT CREATES
-# BUILDER VM'S DISK SNAPSHOT
-# AND DESTROYS IT
+yc compute snapshot create \
+  --name builder-snapshot \
+  --disk-id $BUILDER_DISK_ID \
+  --labels $PROJECT_NAME_KEY=$PROJECT_NAME_VALUE \
+  --async
+
+yc compute instance destroy \
+  --id $BUILDER_VM_ID \
+  --async

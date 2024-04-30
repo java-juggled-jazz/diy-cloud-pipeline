@@ -1,0 +1,55 @@
+{
+  "id": "string",
+  "folderId": "string",
+  "createdAt": "string",
+  "name": "string",
+  "description": "string",
+  "labels": "object",
+  "zoneId": "string",
+  "platformId": "string",
+  "resources": {
+    "memory": "string",
+    "cores": "string",
+    "coreFraction": "string"
+  },
+  "status": "string",
+  "metadata": "object",
+  "metadataOptions": {
+    "gceHttpEndpoint": "DISABLED",
+    "awsV1HttpEndpoint": "DISABLED",
+    "gceHttpToken": "DISABLED",
+    "awsV1HttpToken": "DISABLED"
+  },
+  "bootDisk": {
+    "mode": "string",
+    "deviceName": "string",
+    "autoDelete": true,
+    "diskId": "string"
+  },
+  "networkInterfaces": [
+    {
+      "index": "string",
+      "macAddress": "string",
+      "subnetId": "string",
+      "primaryV4Address": {
+        "address": "string",
+        "oneToOneNat": {
+          "address": "string",
+          "ipVersion": "string"
+        },
+      },
+      "securityGroupIds": [
+        "string"
+      ]
+    }
+  ],
+  "schedulingPolicy": {
+    "preemptible": true
+  },
+  "serviceAccountId": "string",
+  "networkSettings": {
+    "type": "string"
+  },
+  "maintenancePolicy": "string",
+  "maintenanceGracePeriod": "string"
+}

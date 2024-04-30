@@ -1,0 +1,8 @@
+{
+  "id": "string",
+  "folderId": "string",
+  "name": "string",
+  "description": "string",
+  "labels": "object",
+  "sourceDiskId": "string"
+}

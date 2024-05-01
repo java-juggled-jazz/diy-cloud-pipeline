@@ -65,7 +65,7 @@ resource "yandex_vpc_security_group" "vm-security-group" {
   }
 }
 
-output "central-host-ip" {
+output "CENTRAL_HOST_IP" {
   value     = yandex_compute_instance.central-host.network_interface.0.nat_ip_address
   sensitive = false
 }

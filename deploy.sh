@@ -20,7 +20,7 @@ terraform output -json | jq -r 'to_entries[] | .key + "=" + "\"" + (.value.value
 yc compute instance create \
   --name builder \
   --zone $AVAILABILITY_ZONE \
-  --create-boot-disk image-id=$BUILDER_IMAGE_ID,size=30,type=network-ssd \
+  --create-boot-disk image-id=$BUILDER_IMAGE_ID,size=$,type=network-ssd \
   --image-folder-id standard-images \
   --memory $MEMORY --cores $CORES --core-fraction $CORE_FRACTION \
   --network-interface subnet-id=$SUBNET_ID,nat-ip-version=ipv4 \

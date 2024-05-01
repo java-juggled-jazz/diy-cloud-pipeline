@@ -1,7 +1,7 @@
 !#/bin/sh
 
 # Exporting Secrets
-source .secrets
+source .env_vars
 
 # Creating SSH Keys
 mkdir -p ~/.ssh/diy-cloud-pipeline-keys
@@ -18,11 +18,10 @@ terraform output -json | jq -r 'to_entries[] | .key + "=" + "\"" + (.value.value
 
 # Creating Temporary Builder VM
 yc compute instance create \
-  --name builder \
-  --zone $AVAILABILITY_ZONE \
-  --create-boot-disk image-id=$BUILDER_IMAGE_ID,size=$,type=network-ssd \
-  --image-folder-id standard-images \
-  --memory $MEMORY --cores $CORES --core-fraction $CORE_FRACTION \
+  --name builder-vm \
+  --zone $TF_VAR_availability-zone \
+  --create-boot-disk image-id=$BUILDER_VM_IMAGE_ID,size=$BUILDER_VM_DISK_SIZE,type=network-ssd \
+  --memory $BUILDER_VM_MEMORY --cores $BUILDER_VM_CORES --core-fraction $BUILDER_VM_CORE_FRACTION \
   --network-interface subnet-id=$SUBNET_ID,nat-ip-version=ipv4 \
   --async 
 

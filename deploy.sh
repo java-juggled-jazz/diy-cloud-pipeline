@@ -14,7 +14,7 @@ terraform apply -auto-approve
 cd ..
 
 # Exporting Terraform Outputs To Secrets
-terraform output -json | jq -r 'to_entries[] | .key + "=" + "\"" + (.value.value | tostring) + "\""' | while read -r line ; do echo export "$line"; done > env.sh && source env.sh
+terraform output -json | jq -r 'to_entries[] | .key + "=" + "\"" + (.value.value | tostring) + "\""' | while read -r line ; do echo export "$line"; done > env.sh && source env.sh && rm env.sh
 
 # Creating Temporary Builder VM
 yc compute instance create \

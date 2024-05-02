@@ -22,8 +22,10 @@ yc compute instance create \
   --zone $TF_VAR_availability-zone \
   --create-boot-disk image-id=$BUILDER_VM_IMAGE_ID,size=$BUILDER_VM_DISK_SIZE,type=network-ssd \
   --memory $BUILDER_VM_MEMORY --cores $BUILDER_VM_CORES --core-fraction $BUILDER_VM_CORE_FRACTION \
-  --network-interface subnet-id=$SUBNET_ID,nat-ip-version=ipv4 \
-  --async 
+  --network-interface subnet-id=$SUBNET_ID \
+  --format=yaml --no-user-output > ./outputs/vm-output.yaml
+
+yq '("BUILDER_VM_ID=" + .id),("BUILDER_VM_INTERNAL_IP=" + .network_interfaces[0].primary_v4_address.address)' vm-output.yaml -r
 
 # ANSIBLE
 # IS

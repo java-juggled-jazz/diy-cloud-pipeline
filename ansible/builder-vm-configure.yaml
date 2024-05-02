@@ -1,0 +1,4 @@
+---
+- name: Configure Builder VM
+  hosts: builder-vm
+  remote_user: root

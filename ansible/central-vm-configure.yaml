@@ -1,0 +1,4 @@
+---
+- name: Configure Central VM
+  hosts: central-vm
+  remote_user: root

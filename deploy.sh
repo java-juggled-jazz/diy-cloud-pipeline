@@ -39,6 +39,6 @@ yc compute snapshot create \
   --format=yaml --no-user-output > ./outputs/builder-vm-snapshot-output.yaml
 
 # Destroy Temporary Builder VM
-yc compute instance destroy \
+yc compute instance delete \
   --id $BUILDER_VM_ID \
   --async --no-user-output

@@ -41,4 +41,4 @@ yc compute snapshot create \
 # Destroy Temporary Builder VM
 yc compute instance destroy \
   --id $BUILDER_VM_ID \
-  --async
+  --async --no-user-output

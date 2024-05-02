@@ -25,11 +25,14 @@ yc compute instance create \
   --network-interface subnet-id=$SUBNET_ID \
   --format=yaml --no-user-output > ./outputs/builder-vm-output.yaml
 
+# Processing YAML-file to extract Builder VM ID, its Internal IP and its Boot Disk ID into a spectific file
 yq '("builder_vm_id: " + .id),("builder_vm_internal_ip: " + .network_interfaces[0].primary_v4_address.address),("boot_disk_id: " + .boot_disk.disk_id)' builder-vm-output.yaml -r > ./ansible/vars/builder_vm_vars.yaml
 
-# ANSIBLE
-# IS
-# HERE
+# Exporting Builder VM
+export BUILDER_VM_ID=$(yq -r '.id' ./ansible/vars/builder_vm_vars.yaml)
+
+# Starting Playbook For Configuring Builder VM
+ansible-playbook builder-vm-configure.yaml -i inventory.yaml
 
 # Creating Temporary Builder VM Snapshot
 yc compute snapshot create \
@@ -38,7 +41,10 @@ yc compute snapshot create \
   --labels $PROJECT_NAME_KEY=$PROJECT_NAME_VALUE \
   --format=yaml --no-user-output > ./outputs/builder-vm-snapshot-output.yaml
 
-# Destroy Temporary Builder VM
+# Destroying Temporary Builder VM
 yc compute instance delete \
   --id $BUILDER_VM_ID \
   --async --no-user-output
+
+# Starting Playbook For Configuring Central VM
+ansible-playbook central-vm-configure.yaml -i inventory.yaml

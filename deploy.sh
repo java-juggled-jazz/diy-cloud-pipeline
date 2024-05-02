@@ -23,9 +23,9 @@ yc compute instance create \
   --create-boot-disk image-id=$BUILDER_VM_IMAGE_ID,size=$BUILDER_VM_DISK_SIZE,type=network-ssd \
   --memory $BUILDER_VM_MEMORY --cores $BUILDER_VM_CORES --core-fraction $BUILDER_VM_CORE_FRACTION \
   --network-interface subnet-id=$SUBNET_ID \
-  --format=yaml --no-user-output > ./outputs/vm-output.yaml
+  --format=yaml --no-user-output > ./outputs/builder-vm-output.yaml
 
-yq '("BUILDER_VM_ID=" + .id),("BUILDER_VM_INTERNAL_IP=" + .network_interfaces[0].primary_v4_address.address)' vm-output.yaml -r
+yq '("builder_vm_id: " + .id),("builder_vm_internal_ip: " + .network_interfaces[0].primary_v4_address.address),("boot_disk_id: " + .boot_disk.disk_id)' builder-vm-output.yaml -r > ./ansible/vars/builder_vm_vars.yaml
 
 # ANSIBLE
 # IS
@@ -36,7 +36,7 @@ yc compute snapshot create \
   --name builder-snapshot \
   --disk-id $BUILDER_DISK_ID \
   --labels $PROJECT_NAME_KEY=$PROJECT_NAME_VALUE \
-  --async
+  --format=yaml --no-user-output > ./outputs/builder-vm-snapshot-output.yaml
 
 # Destroy Temporary Builder VM
 yc compute instance destroy \

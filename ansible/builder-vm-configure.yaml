@@ -2,3 +2,64 @@
 - name: Configure Builder VM
   hosts: builder-vm
   remote_user: root
+
+  tasks:
+    - name: Remove old Docker packages
+      apt:
+        name:
+          - docker
+          - docker-client
+          - docker-client-latest
+          - docker-common
+          - docker-latest
+          - docker-latest-logrotate
+          - docker-logrotate
+          - docker-engine
+        state: absent
+
+  - name: Install required package
+    apt:
+      name: ca-certificates
+      state: latest
+      update_cache: yes
+
+  - name: Change file permissions
+    ansible.builtin.file:
+      path: /etc/apt/keyrings
+      mode: '0775'
+
+  - name: Add Docker APT repository
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+        state: present
+  
+  - name: Update repository and install Docker packages
+    apt:
+      name:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+        - docker-buildx-plugin
+        - docker-compose-plugin
+      state: latest
+      update_cache: yes
+  
+  - name: Start Docker daemon
+    ansible.builtin.systemd_service:
+      name: docker
+      state: started
+
+  - name: Install JDK 17
+    apt:
+      name:
+        - fontconfig
+        - openjdk-17-jre
+      state: lastest
+
+  - name: Download foo.conf
+    ansible.builtin.get_url:
+      url: "{{ jenkins-keyring }}"
+      dest: /usr/share/keyrings/jenkins-keyring.asc
+      mode: 'a+r'
+
+  

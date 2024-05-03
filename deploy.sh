@@ -1,4 +1,4 @@
-!# /bin/bash
+#!/bin/bash
 
 # Declaring SSH Keys Dir Variables
 CENTRAL_HOST_SSH_KEY_DIR="~/.ssh/diy-cloud-pipeline-keys/"

@@ -41,3 +41,8 @@ variable "service_account_id" {
 variable "project_label" {
   type = string
 }
+
+variable "yandex_iam_token" {
+  type = string
+  sensitive = true
+}

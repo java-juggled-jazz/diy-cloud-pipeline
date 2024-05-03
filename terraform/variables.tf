@@ -30,6 +30,10 @@ variable "central_host_disk_size" {
   type = number
 }
 
+variable "central_vm_ssh_key_dir" {
+  type = string
+}
+
 variable "service_account_id" {
   type = string
 }

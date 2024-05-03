@@ -11,6 +11,6 @@ resource "yandex_lb_network_load_balancer" "load-balancer" {
   }
 
   labels = {
-    project_label = var.project_label
+    project-label = var.project_label
   }
 }

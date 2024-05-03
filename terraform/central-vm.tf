@@ -12,7 +12,7 @@ resource "yandex_compute_instance" "central-host" {
   zone        = var.availability_zone
 
   resources {
-    cores  = var.central_host_cores
+    cores  = var.central_vm_cores
     core_fraction = var.central_vm_core_fraction
     memory = var.central_vm_memory
   }

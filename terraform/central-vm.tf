@@ -63,7 +63,7 @@ resource "yandex_vpc_security_group" "vm-security-group" {
   }
 
   labels = {
-    project_label = var.project_label
+    project-label = var.project_label
   }
 }
 

@@ -1,6 +1,6 @@
 resource "yandex_kubernetes_cluster" "managed-k8s" {
   name        = "managed-k8s"
-
+  folder_id = var.folder_id
   network_id = yandex_vpc_network.cloud-pipeline-net.id
 
   master {

@@ -12,7 +12,9 @@ provider "yandex" {
   token = var.yandex_iam_token
 }
 
-resource "yandex_vpc_network" "cloud-pipeline-net" {}
+resource "yandex_vpc_network" "cloud-pipeline-net" {
+  folder_id = var.folder_id
+}
 
 resource "yandex_vpc_subnet" "cloud-pipeline-subnet" {
   zone           = var.availability_zone

@@ -1,5 +1,6 @@
 resource "yandex_lb_network_load_balancer" "load-balancer" {
   name = "load-balancer"
+  folder_id = var.folder_id
 
   listener {
     name = "my-listener"

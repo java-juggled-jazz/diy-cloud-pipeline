@@ -69,3 +69,8 @@ output "CENTRAL_HOST_IP" {
   value     = yandex_compute_instance.central-host.network_interface.0.nat_ip_address
   sensitive = false
 }
+
+output "CENTRAL_HOST_INTERNAL_IP" {
+  value     = yandex_compute_instance.central-host.network_interface.0.ip_address
+  sensitive = false
+}

@@ -5,15 +5,15 @@ resource "yandex_kubernetes_cluster" "managed-k8s" {
 
   master {
     zonal {
-      zone = var.availability-zone
+      zone = var.availability_zone
       subnet_id = yandex_vpc_subnet.cloud-pipeline-subnet.id
     }
 
     security_group_ids = [yandex_vpc_security_group.k8s-public-services.id]
   }
 
-  service_account_id = var.service-account-id
-  node_service_account_id = var.service-account-id
+  service_account_id = var.service_account_id
+  node_service_account_id = var.service_account_id
 
   labels = {
     project_label = var.project_label

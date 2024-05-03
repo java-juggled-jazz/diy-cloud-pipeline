@@ -10,23 +10,23 @@ variable "availability_zone" {
   type = string
 }
 
-variable "central_host_cores" {
+variable "central_vm_cores" {
   type = number
 }
 
-variable "central_host_core_fraction" {
+variable "central_vm_core_fraction" {
   type = number
 }
 
-variable "central_host_memory" {
+variable "central_vm_memory" {
   type = number
 }
 
-variable "central_host_image_id" {
+variable "central_vm_image_id" {
   type = string
 }
 
-variable "central_host_disk_size" {
+variable "central_vm_disk_size" {
   type = number
 }
 

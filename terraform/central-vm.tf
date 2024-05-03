@@ -2,8 +2,8 @@ resource "yandex_compute_disk" "boot-disk-central" {
   name     = "central-host-boot-disk"
   type     = "network-ssd"
   zone     = var.availability_zone
-  size     = var.central_host_disk_size
-  image_id = var.central_host_image_id
+  size     = var.central_vm_disk_size
+  image_id = var.central_vm_image_id
 }
 
 resource "yandex_compute_instance" "central-host" {
@@ -13,8 +13,8 @@ resource "yandex_compute_instance" "central-host" {
 
   resources {
     cores  = var.central_host_cores
-    core_fraction = var.central_host_core_fraction
-    memory = var.central_host_memory
+    core_fraction = var.central_vm_core_fraction
+    memory = var.central_vm_memory
   }
 
   boot_disk {

@@ -25,6 +25,7 @@ resource "yandex_kubernetes_cluster" "managed-k8s" {
 resource "yandex_vpc_security_group" "k8s-public-services" {
   name        = "k8s-public-services"
   network_id  = yandex_vpc_network.cloud-pipeline-net.id
+  folder_id = var.folder_id
 
   ingress {
     protocol          = "TCP"

@@ -1,16 +1,16 @@
-variable "cloud-id" {
+variable "cloud_id" {
   type = string
 }
 
-variable "folder-id" {
+variable "folder_id" {
   type = string
 }
 
-variable "availability-zone" {
+variable "availability_zone" {
   type = string
 }
 
-variable "central-host-vars" {
+variable "central_host_vars" {
   type = object({
     cores = number
     core_fraction = number
@@ -20,7 +20,7 @@ variable "central-host-vars" {
   })
 }
 
-variable "service-account-id" {
+variable "service_account_id" {
   type = string
 }
 

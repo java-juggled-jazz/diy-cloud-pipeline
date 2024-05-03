@@ -10,14 +10,24 @@ variable "availability_zone" {
   type = string
 }
 
-variable "central_host_vars" {
-  type = object({
-    cores = number
-    core_fraction = number
-    memory = number
-    image_id = string
-    disk_size = number
-  })
+variable "central_host_cores" {
+  type = number
+}
+
+variable "central_host_core_fraction" {
+  type = number
+}
+
+variable "central_host_core_memory" {
+  type = number
+}
+
+variable "central_host_core_image_id" {
+  type = string
+}
+
+variable "central_host_core_disk_size" {
+  type = number
 }
 
 variable "service_account_id" {

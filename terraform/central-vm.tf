@@ -11,6 +11,7 @@ resource "yandex_compute_instance" "central-host" {
   name        = "central-host"
   platform_id = "standard-v1"
   zone        = var.availability_zone
+  folder_id = var.folder_id
 
   resources {
     cores  = var.central_vm_cores

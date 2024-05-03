@@ -28,7 +28,7 @@ resource "yandex_compute_instance" "central-host" {
   }
 
   metadata = {
-    ssh-keys = ""
+    ssh-keys = "${file(var.central-vm-ssh-key-dir)}"
   }
 
   labels = {

@@ -20,13 +20,6 @@ variable "central-host-vars" {
   })
 }
 
-variable "pipeline-bucket" {
-  type = object({
-    max_size = number
-    default_storage_class = string
-  })
-}
-
 variable "service-account-id" {
   type = string
 }

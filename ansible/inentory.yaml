@@ -1,2 +1,7 @@
-virtual-machines:
+central:
   hosts:
+    host-one:
+
+builder:
+  hosts:
+    host-one:

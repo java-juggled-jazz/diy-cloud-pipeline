@@ -18,15 +18,15 @@ variable "central_host_core_fraction" {
   type = number
 }
 
-variable "central_host_core_memory" {
+variable "central_host_memory" {
   type = number
 }
 
-variable "central_host_core_image_id" {
+variable "central_host_image_id" {
   type = string
 }
 
-variable "central_host_core_disk_size" {
+variable "central_host_disk_size" {
   type = number
 }
 

@@ -20,6 +20,6 @@ resource "yandex_vpc_subnet" "cloud-pipeline-subnet" {
 }
 
 output "SUBNET_ID" {
-  value     = yandex_vpc_subnet.cloud-pipeline-net.id
+  value     = yandex_vpc_subnet.cloud-pipeline-subnet.id
   sensitive = false
 }

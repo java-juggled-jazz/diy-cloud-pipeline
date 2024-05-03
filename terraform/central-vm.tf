@@ -2,7 +2,7 @@ resource "yandex_compute_disk" "boot-disk-central" {
   name     = "central-host-boot-disk"
   type     = "network-ssd"
   zone     = var.availability_zone
-  size     = var.central_vm_disk_size
+  size     = "${var.central_vm_disk_size}"
   image_id = var.central_vm_image_id
 }
 

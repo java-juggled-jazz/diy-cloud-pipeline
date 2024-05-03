@@ -16,7 +16,7 @@ resource "yandex_kubernetes_cluster" "managed-k8s" {
   node_service_account_id = var.service_account_id
 
   labels = {
-    project_label = var.project_label
+    project-label = var.project_label
   }
 
   release_channel = "STABLE"

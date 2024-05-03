@@ -5,7 +5,7 @@ CENTRAL_HOST_SSH_KEY_DIR="~/.ssh/diy-cloud-pipeline-keys/"
 BUILDER_HOST_SSH_KEY_DIR="~/.ssh/diy-cloud-pipeline-keys/"
 
 # Exporting Secrets
-source .env_vars
+export .env_vars
 
 # Creating Central Host SSH Key
 mkdir -p $CENTRAL_HOST_SSH_KEY_DIR

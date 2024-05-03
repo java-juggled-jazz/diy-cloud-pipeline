@@ -9,6 +9,7 @@ terraform {
 
 provider "yandex" {
   zone = var.availability_zone
+  token = var.yandex_iam_token
 }
 
 resource "yandex_vpc_network" "cloud-pipeline-net" {}

@@ -1,20 +1,20 @@
 resource "yandex_compute_disk" "boot-disk-central" {
   name     = "central-host-boot-disk"
   type     = "network-ssd"
-  zone     = var.availability-zone
-  size     = var.central-host-vars.disk_size
-  image_id = var.central-host-vars.image_id
+  zone     = var.availability_zone
+  size     = var.central_host_vars.disk_size
+  image_id = var.central_host_vars.image_id
 }
 
 resource "yandex_compute_instance" "central-host" {
   name        = "central-host"
   platform_id = "standard-v1"
-  zone        = var.availability-zone
+  zone        = var.availability_zone
 
   resources {
-    cores  = var.central-host-vars.cores
-    core_fraction = var.central-host-vars.core_fraction
-    memory = var.central-host-vars.memory
+    cores  = var.central_host_vars.cores
+    core_fraction = var.central_host_vars.core_fraction
+    memory = var.central_host_vars.memory
   }
 
   boot_disk {
@@ -28,7 +28,7 @@ resource "yandex_compute_instance" "central-host" {
   }
 
   metadata = {
-    ssh-keys = "${file(var.central-vm-ssh-key-dir)}"
+    ssh-keys = "${file(var.central_vm_ssh_key_dir)}"
   }
 
   labels = {

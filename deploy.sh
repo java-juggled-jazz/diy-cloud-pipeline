@@ -18,7 +18,7 @@ ssh-keygen -t rsa -b 2048 -f $BUILDER_HOST_SSH_KEY_DIR"id_rsa_builder" -N "$BUID
 # Creating Cloud Resources
 cd terraform
 terraform init
-terraform apply -auto-approve -var central-vm-ssh-key-dir=$BUILDER_HOST_SSH_KEY_DIR"id_rsa_builder.pub"
+terraform apply -auto-approve -var central_vm_ssh_key_dir=$BUILDER_HOST_SSH_KEY_DIR"id_rsa_builder.pub"
 cd ..
 
 # Exporting Terraform Outputs To Secrets

@@ -40,6 +40,7 @@ resource "yandex_compute_instance" "central-host" {
 resource "yandex_vpc_security_group" "vm-security-group" {
   name        = "vm-security-group"
   network_id  = yandex_vpc_network.cloud-pipeline-net.id
+  folder_id = var.folder_id
 
   ingress {
     protocol       = "TCP"

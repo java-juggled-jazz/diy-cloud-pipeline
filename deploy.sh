@@ -24,7 +24,7 @@ terraform apply -auto-approve -var central_vm_ssh_key_dir=$BUILDER_HOST_SSH_KEY_
   -var central_vm_core_fraction=$TF_VAR_central_vm_core_fraction -var central_vm_memory=$TF_VAR_central_vm_memory \
   -var central_vm_image_id=$TF_VAR_central_vm_image_id -var central_vm_disk_size=$TF_VAR_central_vm_disk_size \
   -var central_vm_ssh_key_dir=$TF_VAR_central_vm_ssh_key_dir -var service_account_id=$TF_VAR_service_account_id \
-  -var project_label=$TF_VAR_project_label
+  -var project_label=$TF_VAR_project_label -var yandex_iam_token=$(yc iam create-token)
 cd ..
 
 # Exporting Terraform Outputs To Secrets

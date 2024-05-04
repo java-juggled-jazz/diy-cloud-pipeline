@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Exporting Secrets
-export .env_vars
+source .env_vars
 
 # Destroy Instances
 cd terraform

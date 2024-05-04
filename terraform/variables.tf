@@ -11,15 +11,15 @@ variable "availability_zone" {
 }
 
 variable "central_vm_cores" {
-  type = number
+  type = string
 }
 
 variable "central_vm_core_fraction" {
-  type = number
+  type = string
 }
 
 variable "central_vm_memory" {
-  type = number
+  type = string
 }
 
 variable "central_vm_image_id" {
@@ -27,7 +27,7 @@ variable "central_vm_image_id" {
 }
 
 variable "central_vm_disk_size" {
-  type = number
+  type = string
 }
 
 variable "central_vm_ssh_key_dir" {

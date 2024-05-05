@@ -1,6 +1,6 @@
 ---
 - name: Configure Builder VM
-  hosts: builder-vm
+  hosts: builder
   remote_user: root
 
   tasks:
@@ -17,58 +17,41 @@
           - docker-engine
         state: absent
 
-  - name: Install required package
-    apt:
-      name: ca-certificates
-      state: latest
-      update_cache: yes
+    - name: Install required package
+      apt:
+        name: ca-certificates
+        state: latest
+        update_cache: yes
 
-  - name: Change file permissions
-    ansible.builtin.file:
-      path: /etc/apt/keyrings
-      mode: '0775'
+    - name: Change file permissions
+      ansible.builtin.file:
+        path: /etc/apt/keyrings
+        mode: '0775'
 
-  - name: Add Docker APT repository
+    - name: Add Docker APT repository
       ansible.builtin.apt_repository:
         repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
         state: present
-  
-  - name: Update repository and install Docker packages
-    apt:
-      name:
-        - docker-ce
-        - docker-ce-cli
-        - containerd.io
-        - docker-buildx-plugin
-        - docker-compose-plugin
-      state: latest
-      update_cache: yes
-  
-  - name: Start Docker daemon
-    ansible.builtin.systemd_service:
-      name: docker
-      state: started
+    
+    - name: Update repository and install Docker packages
+      apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: latest
+        update_cache: yes
+    
+    - name: Start Docker daemon
+      ansible.builtin.systemd_service:
+        name: docker
+        state: started
 
-  - name: Install JDK 17
-    apt:
-      name:
-        - fontconfig
-        - openjdk-17-jre
-      state: lastest
-
-  - name: Download Jenkins Keyring
-    ansible.builtin.get_url:
-      url: "{{ jenkins-keyring }}"
-      dest: /usr/share/keyrings/jenkins-keyring.asc
-      mode: 'a+r'
-
-  - name: Add Jenkins APT repository
-      ansible.builtin.apt_repository:
-        repo: "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary"
-        state: present
-
-  - name: Install Jenkins package
-    apt:
-      name: jenkins
-      state: latest
-      update_cache: yes
+    - name: Install JDK 17
+      apt:
+        name:
+          - fontconfig
+          - openjdk-17-jre
+        state: lastest

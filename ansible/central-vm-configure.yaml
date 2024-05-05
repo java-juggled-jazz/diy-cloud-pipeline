@@ -1,4 +1,30 @@
 ---
 - name: Configure Central VM
-  hosts: central-vm
+  hosts: central
   remote_user: root
+
+  tasks:
+    - name: Install JDK 17
+      apt:
+        name:
+          - fontconfig
+          - openjdk-17-jre
+        state: lastest
+
+    - name: Download Jenkins Keyring
+      ansible.builtin.get_url:
+        url: "{{ jenkins-keyring }}"
+        dest: /usr/share/keyrings/jenkins-keyring.asc
+        mode: 'a+r'
+
+    - name: Add Jenkins APT repository
+      ansible.builtin.apt_repository:
+        repo: "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary"
+        state: present
+
+    - name: Install Jenkins package
+      apt:
+        name: jenkins
+        state: latest
+        update_cache: yes
+

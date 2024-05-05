@@ -1,0 +1,10 @@
+---
+
+central:
+  hosts:
+    host-one:
+      ansible_host:
+builder:
+  hosts:
+    host-one:
+      ansible_host:

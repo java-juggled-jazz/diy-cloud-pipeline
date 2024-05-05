@@ -1,7 +1,8 @@
 ---
 - name: Configure Builder VM
   hosts: builder
-  remote_user: root
+  remote_user: {{ ANSIBLE_BUILDER_VM_SERVICE_USER }}
+  become: yes
 
   tasks:
     - name: Remove old Docker packages

@@ -34,8 +34,6 @@ terraform output -json | jq -r 'to_entries[] | .key + "=" + "\"" + (.value.value
 cd ..
 mkdir -p ./outputs/
 
-echo "SUBNET_ID: "$SUBNET_ID
-
 # Creating Temporary Builder VM
 yc compute instance create \
   --name builder-vm \

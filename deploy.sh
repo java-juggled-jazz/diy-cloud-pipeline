@@ -55,7 +55,7 @@ export BUILDER_VM_INTERNAL_IP=$(yq -r '.builder_vm_ip' ./ansible/vars/builder-vm
 export BUILDER_VM_BOOT_DISK_ID=$(yq -r '.boot_disk_id' ./ansible/vars/builder-vm-vars.yaml)
 
 # Setting IP-Addresses into Ansible Inventory file
-yq '.central.hosts."host-one".ansible_host = "'$CENTRAL_HOST_IP'" | .builder.hosts."host-one".ansible_host = "'$BUILDER_VM_INTERNAL_IP'"' ./ansible/inventory_template.yaml -y > ./ansible/inventory.yaml
+yq '.central.hosts."host-one".ansible_host = "'$CENTRAL_HOST_IP'" | .central.users.service_user = "'$ANSIBLE_CENTRAL_VM_SERVICE_USER'" | .builder.hosts."host-one".ansible_host = "'$BUILDER_VM_INTERNAL_IP' | .builder.users.service_user = "'$ANSIBLE_BUILDER_VM_SERVICE_USER'""' ./ansible/inventory_template.yaml -y > ./ansible/inventory.yaml
 
 # Starting Playbook For Configuring Builder VM
 ansible-playbook ./ansible/builder-vm-configure.yaml -i ./ansible/inventory.yaml

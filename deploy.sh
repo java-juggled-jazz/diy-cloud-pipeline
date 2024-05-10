@@ -57,7 +57,7 @@ case $1 in
   "test")
     mkdir -p terraform-test
     cd terraform-test
-    cat $(for var in $(ls | grep -e ".tf$" | grep -v "k8s"); do echo -n "$var "; done;) > terraform-test.tf
+    echo $(for var in $(ls ../terraform | grep -e ".tf$" | grep -v "k8s"); do echo -n "$var "; done;) > terraform-test.tf
     terraform apply -auto-approve -var central_vm_ssh_key_dir=$BUILDER_HOST_SSH_KEY_DIR"id_rsa_builder.pub" \
       -var cloud_id=$TF_VAR_cloud_id -var folder_id=$TF_VAR_folder_id \
       -var availability_zone=$TF_VAR_availability_zone -var central_vm_cores=$TF_VAR_central_vm_cores \

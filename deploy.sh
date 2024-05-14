@@ -77,6 +77,8 @@ cd ..
 
 mkdir -p ./outputs/
 
+echo "Creating Builder VM..."
+
 # Creating Temporary Builder VM
 yc compute instance create \
   --name builder-vm \
@@ -86,6 +88,8 @@ yc compute instance create \
   --network-interface subnet-id=$SUBNET_ID,nat-ip-version=ipv4 \
   --ssh-key $BUILDER_HOST_SSH_KEY_DIR"id_rsa_builder.pub" \
   --format=yaml --no-user-output > ./outputs/builder-vm-output.yaml
+
+echo "Created Builder VM."
 
 mkdir -p ./ansible/vars/
 
@@ -98,7 +102,7 @@ export BUILDER_VM_INTERNAL_IP=$(yq -r '.builder_vm_ip' ./ansible/vars/builder-vm
 export BUILDER_VM_BOOT_DISK_ID=$(yq -r '.boot_disk_id' ./ansible/vars/builder-vm-vars.yaml)
 
 # Setting IP-Addresses into Ansible Inventory file
-yq '.central.hosts."host-one".ansible_host = "'$CENTRAL_HOST_IP'" | .central.users.service_user = "'$ANSIBLE_CENTRAL_VM_SERVICE_USER'" | .builder.hosts."host-one".ansible_host = "'$BUILDER_VM_INTERNAL_IP'" | .builder.users.service_user = "'$ANSIBLE_BUILDER_VM_SERVICE_USER'"' ./ansible/inventory_template.yaml -y > ./ansible/inventory.yaml
+yq '.central.hosts."host-one".ansible_host = "'$CENTRAL_HOST_IP'" | .central.vars.users.service_user = "'$ANSIBLE_CENTRAL_VM_SERVICE_USER'" | .builder.hosts."host-one".ansible_host = "'$BUILDER_VM_INTERNAL_IP'" | .builder.vars.users.service_user = "'$ANSIBLE_BUILDER_VM_SERVICE_USER'"' ./ansible/inventory_template.yaml -y > ./ansible/inventory.yaml
 
 # Starting Playbook For Configuring Builder VM
 ansible-playbook ./ansible/builder-vm-configure.yaml -i ./ansible/inventory.yaml

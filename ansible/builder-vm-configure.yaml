@@ -1,9 +1,9 @@
 ---
 - name: Configure Builder VM
   hosts: builder
-  remote_user: {{ ANSIBLE_BUILDER_VM_SERVICE_USER }}
+  remote_user: "{{ ANSIBLE_BUILDER_VM_SERVICE_USER }}"
   become: true
-  become_user: {{ ANSIBLE_CENTRAL_VM_SERVICE_USER }}
+  become_user: "{{ ANSIBLE_CENTRAL_VM_SERVICE_USER }}"
   become_method: sudo
 
   tasks:

@@ -6,6 +6,8 @@ CENTRAL_HOST_SSH_KEY_DIR=$HOME"/.ssh/diy-cloud-pipeline-keys/"
 # Exporting Secrets
 source .env_vars
 
+yc compute instance delete --name builder-vm
+
 # Checking The Flag And executing The Command Depending On Value
 case $1 in
 # Destroy Instances With K8s

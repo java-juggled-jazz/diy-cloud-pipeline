@@ -51,7 +51,6 @@ case $1 in
       -var central_vm_image_id=$TF_VAR_central_vm_image_id -var central_vm_disk_size=$TF_VAR_central_vm_disk_size \
       -var central_vm_ssh_key_dir=$CENTRAL_HOST_SSH_KEY_DIR"id_rsa_central.pub" -var service_account_id=$TF_VAR_service_account_id \
       -var project_label=$TF_VAR_project_label -var yandex_iam_token=$(yc iam create-token)
-    cd ..
     ;;
 
 # Deploy without K8s. Tests Only. Don't Forget To Add Target Files After Adding Config Files
@@ -68,12 +67,13 @@ case $1 in
       -var central_vm_image_id=$TF_VAR_central_vm_image_id -var central_vm_disk_size=$TF_VAR_central_vm_disk_size \
       -var central_vm_ssh_key_dir=$CENTRAL_HOST_SSH_KEY_DIR"id_rsa_central.pub" -var service_account_id=$TF_VAR_service_account_id \
       -var project_label=$TF_VAR_project_label -var yandex_iam_token=$(yc iam create-token)
-    cd ..
     ;;
 esac
 
 # Exporting Terraform Outputs To Secrets
-terraform output -json | jq -r 'to_entries[] | .key + "=" + "\"" + (.value.value | tostring) + "\""' | while read -r line ; do echo export "$line"; done > env.sh && source env.sh && rm env.sh
+terraform output -json | jq -r 'to_entries[] | .key + "=" + "\"" + (.value.value | tostring) + "\""' | while read -r line ; do echo export "$line"; done > env.sh && source env.sh
+
+cd ..
 
 mkdir -p ./outputs/
 
@@ -98,7 +98,7 @@ export BUILDER_VM_INTERNAL_IP=$(yq -r '.builder_vm_ip' ./ansible/vars/builder-vm
 export BUILDER_VM_BOOT_DISK_ID=$(yq -r '.boot_disk_id' ./ansible/vars/builder-vm-vars.yaml)
 
 # Setting IP-Addresses into Ansible Inventory file
-yq '.central.hosts."host-one".ansible_host = "'$CENTRAL_HOST_IP'" | .central.users.service_user = "'$ANSIBLE_CENTRAL_VM_SERVICE_USER'" | .builder.hosts."host-one".ansible_host = "'$BUILDER_VM_INTERNAL_IP' | .builder.users.service_user = "'$ANSIBLE_BUILDER_VM_SERVICE_USER'""' ./ansible/inventory_template.yaml -y > ./ansible/inventory.yaml
+yq '.central.hosts."host-one".ansible_host = "'$CENTRAL_HOST_IP'" | .central.users.service_user = "'$ANSIBLE_CENTRAL_VM_SERVICE_USER'" | .builder.hosts."host-one".ansible_host = "'$BUILDER_VM_INTERNAL_IP'" | .builder.users.service_user = "'$ANSIBLE_BUILDER_VM_SERVICE_USER'"' ./ansible/inventory_template.yaml -y > ./ansible/inventory.yaml
 
 # Starting Playbook For Configuring Builder VM
 ansible-playbook ./ansible/builder-vm-configure.yaml -i ./ansible/inventory.yaml

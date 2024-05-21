@@ -1,12 +1,16 @@
 ---
 - name: Configure Builder VM
   hosts: builder
-  remote_user: "{{ ANSIBLE_BUILDER_VM_SERVICE_USER }}"
+  remote_user: "{{ service_user }}"
+  become_method: su
   become: true
-  become_user: "{{ ANSIBLE_CENTRAL_VM_SERVICE_USER }}"
-  become_method: sudo
+  become_exe: sudo su -
 
   tasks:
+#    - name: Become root
+#      shell: sudo su && exit
+#      become: true
+
     - name: Remove old Docker packages
       apt:
         name:
@@ -30,12 +34,18 @@
       ansible.builtin.file:
         path: /etc/apt/keyrings
         mode: '0775'
+        recurse: true
+
+    - name: Add Docker's official GPG key
+      ansible.builtin.get_url:
+        url: https://download.docker.com/linux/debian/gpg
+        dest: /etc/apt/keyrings/docker.asc
 
     - name: Add Docker APT repository
       ansible.builtin.apt_repository:
         repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
         state: present
-    
+
     - name: Update repository and install Docker packages
       apt:
         name:
@@ -46,7 +56,7 @@
           - docker-compose-plugin
         state: latest
         update_cache: yes
-    
+
     - name: Start Docker daemon
       ansible.builtin.systemd_service:
         name: docker
@@ -57,4 +67,4 @@
         name:
           - fontconfig
           - openjdk-17-jre
-        state: lastest
+        state: latest

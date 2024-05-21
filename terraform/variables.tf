@@ -10,6 +10,10 @@ variable "availability_zone" {
   type = string
 }
 
+variable "ssh_keys" {
+  type = string
+}
+
 variable "central_vm_cores" {
   type = string
 }
@@ -30,7 +34,7 @@ variable "central_vm_disk_size" {
   type = string
 }
 
-variable "central_vm_ssh_key_dir" {
+variable "central_vm_userdata" {
   type = string
 }
 

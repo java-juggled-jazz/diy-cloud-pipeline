@@ -4,7 +4,9 @@ central:
   hosts:
     host-one:
       ansible_host:
+      ansible_ssh_private_key_file:
 builder:
   hosts:
     host-one:
       ansible_host:
+      ansible_ssh_private_key_file:

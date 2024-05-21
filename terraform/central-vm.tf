@@ -30,7 +30,10 @@ resource "yandex_compute_instance" "central-host" {
   }
 
   metadata = {
-    ssh-keys = "${file(var.central_vm_ssh_key_dir)}"
+    ssh-keys = var.ssh_keys
+    user-data = "${file(var.central_vm_userdata)}"
+    install-unified-agent = 0
+    serial-port-enable = 0
   }
 
   labels = {

@@ -1,10 +1,10 @@
 ---
 - name: Configure Central VM
   hosts: central
-  remote_user: "{{ ANSIBLE_CENTRAL_VM_SERVICE_USER }}"
+  remote_user: "{{ service_user }}"
+  become_method: su
   become: true
-  become_user: "{{ ANSIBLE_CENTRAL_VM_SERVICE_USER }}"
-  become_method: sudo
+  become_exe: sudo su -
 
   tasks:
     - name: Install JDK 17
@@ -12,13 +12,12 @@
         name:
           - fontconfig
           - openjdk-17-jre
-        state: lastest
+        state: latest
 
     - name: Download Jenkins Keyring
       ansible.builtin.get_url:
         url: "{{ jenkins-keyring }}"
         dest: /usr/share/keyrings/jenkins-keyring.asc
-        mode: 'a+r'
 
     - name: Add Jenkins APT repository
       ansible.builtin.apt_repository:
